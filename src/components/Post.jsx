@@ -1,47 +1,16 @@
-import { useEffect } from "react";
-import { useState } from "react"
+import { useState, useEffect } from "react";
 
-const postList = [
-    {
-        content: "> mfw im a big ni",
-        image: "https://placehold.co/400",
-        creator_id: null,
-        created_at: "4 May 2025 22:23",
-        parent_id: null
-    },
-    {
-        content: "> mfw im a big ni",
-        image: "https://placehold.co/400x200",
-        creator_id: null,
-        created_at: "4 May 2025 22:23",
-        parent_id: null
-    },
-    {
-        content: "> mfw im a big ni",
-        image: "https://placehold.co/300",
-        creator_id: null,
-        created_at: "4 May 2025 22:23",
-        parent_id: null
-    },
-    {
-        content: "> mfw im a big ni",
-        image: null,
-        creator_id: "Jaurnathan",
-        created_at: "4 May 2025 22:23",
-        parent_id: null
-    }
-]
+function PostGrid({posts}) {
 
-
-function PostGrid() {
     return (
         <main className='bg-green-200 w-screen min-h-screen absolute flex flex-col items-center justify-center'>
             {
-                postList.map((post) => {
+                posts.map((post) => {
                     return (
                         <Post 
+                            key={post.id}
                             content={post.content}
-                            image={post.image}
+                            image={post.image_url}
                             created_at={post.created_at}
                             parent_id={post.parent_id}
                             creator_id={post.creator_id}
@@ -58,7 +27,7 @@ function Post({content, image, creator_id, created_at, parent_id}) {
 
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem("user")))
-    });
+    }, []);
 
     return (
         <>
@@ -71,7 +40,7 @@ function Post({content, image, creator_id, created_at, parent_id}) {
         ">
             <div className="relative my-2">
                 <span className="text-blue-900">
-                    {"Anonymous" || creator_id}
+                    {creator_id != "00000000-0000-0000-0000-000000000000"? creator_id : "Anonymous"}
                 {
                     creator_id == user.id &&
                     <button className="absolute right-2 text-red-500">
