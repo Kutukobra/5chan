@@ -45,6 +45,9 @@ function NewPost({parent}) {
             .then(response => {
                 location.reload();
             })
+            .catch(error => {
+                setLoading(false);
+            })
         
     }
 
@@ -83,15 +86,12 @@ function NewPost({parent}) {
                 onChange={onFileChange}
             />
             <button onClick={handleSubmit}
-                    className="
-                    bg-green-900
-                    border-black
-                    border-2    
-                    text-white
-                    w-1/2 static
-                    m-2
-                    cursor-pointer
-                "
+                    className=
+                    {
+                        "border-black border-2 text-white w-1/2 static m-2 hover:bg-green-600 " + (
+                            loading ? "cursor-progress bg-green-600" : "cursor-pointer bg-green-900"
+                        )
+                    }
                 disabled={loading}
             >
                 Post
