@@ -7,7 +7,7 @@ import Timestamp from "react-timestamp";
 function PostGrid({posts}) {
 
     return (
-        <main className='bg-green-200 w-screen min-h-screen absolute flex flex-col items-center justify-center'>
+        <main className='bg-green-300 w-screen min-h-screen absolute flex flex-col items-center justify-center'>
             {
                 posts.map((post) => {
                     return (
@@ -52,7 +52,7 @@ function Post({post_id, content, image, creator_id, created_at}) {
                     content-center
                     w-full sm:w-2/3 h-full
                     p-2 m-1 
-                    bg-green-300 border-1 border-green-500
+                    bg-green-200 border-1 border-green-500
         ">
             <div className="relative my-2">
                 <span className="text-blue-900">
@@ -72,21 +72,8 @@ function Post({post_id, content, image, creator_id, created_at}) {
             </div>
             <div className="relative h-full">
                 {image && <img src={image} className="float-left w-1/3 m-1"/>}
-                <p className="mx-2 text-black text-md whitespace-pre-line">{content}</p>
-            </div>
-            <Popup trigger={
-                <button className="relative bg-green-300 m-1 p-1 border-black border-1 text-blue-900 hover:bg-green-200 hover:cursor-pointer">
-                    Reply
-                </button>
-            }
-                position="bottom left"
-            >
-                    <NewPost 
-                        parent={post_id}
-                    />
-            </Popup>
-
-            {
+                <p className="mx-2 text-black text-md whitespace-pre-line overflow-hidden">{content}</p>
+                {
                 replies.map((post) => {
                     if (!post || !post.id) return null;
                     return (
@@ -102,6 +89,18 @@ function Post({post_id, content, image, creator_id, created_at}) {
                     )
                 })
             }
+            </div>
+            <Popup trigger={
+                <button className="relative bg-green-300 m-1 p-1 border-black border-1 text-blue-900 hover:bg-green-400 hover:cursor-pointer">
+                    Reply
+                </button>
+            }
+                position="bottom left"
+            >
+                    <NewPost 
+                        parent={post_id}
+                    />
+            </Popup>
             
         </section>
         </>

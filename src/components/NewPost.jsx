@@ -6,6 +6,8 @@ function NewPost({parent}) {
     const [image, setImage] = useState(null);
     const [content, setContent] = useState("");
 
+    const [loading, setLoading] = useState(false);
+
     const onFileChange = (event) => {
         console.log(event.target.files);
         setImage(event.target.files[0]);
@@ -14,6 +16,8 @@ function NewPost({parent}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();
+
+        setLoading(true);
 
         if (content != null) {
             formData.append(
@@ -71,6 +75,7 @@ function NewPost({parent}) {
                     text-black
                     w-1/2 static
                     mt-3
+                    cursor-pointer
                 "
                 type="file" 
                 name="file"
@@ -85,7 +90,9 @@ function NewPost({parent}) {
                     text-white
                     w-1/2 static
                     m-2
+                    cursor-pointer
                 "
+                disabled={loading}
             >
                 Post
             </button>

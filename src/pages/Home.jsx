@@ -20,7 +20,7 @@ function Home() {
     return (
         <div >
             <header className="bg-green-500 sticky top-0 flex justify-center">
-                <Popup trigger={<button className="bg-green-200 m-2 p-2">
+                <Popup trigger={<button className="bg-green-200 m-2 p-2 cursor-pointer">
                     Create Post
                 </button>}>
                     <NewPost />
