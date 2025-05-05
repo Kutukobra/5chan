@@ -82,6 +82,7 @@ function Post({post_id, content, image, creator_id, created_at, parent_id}) {
 
             {
                 replies.map((post) => {
+                    if (!post || !post.id) return null;
                     return (
                         <Post 
                             key={post.id}
