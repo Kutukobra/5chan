@@ -57,7 +57,7 @@ function Post({post_id, content, image, creator_id, created_at, parent_id}) {
                 <span className="text-blue-900">
                     {"Anonymous"}
                 {
-                    creator_id == user.id &&
+                    creator_id == user?.id &&
                     <button className="absolute right-2 text-red-500">
                         Delete
                     </button>
