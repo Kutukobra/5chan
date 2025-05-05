@@ -55,7 +55,7 @@ function Post({post_id, content, image, creator_id, created_at, parent_id}) {
         ">
             <div className="relative my-2">
                 <span className="text-blue-900">
-                    {creator_id != "00000000-0000-0000-0000-000000000000"? creator_id : "Anonymous"}
+                    {"Anonymous"}
                 {
                     creator_id == user.id &&
                     <button className="absolute right-2 text-red-500">
