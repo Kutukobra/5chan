@@ -41,7 +41,7 @@ function NewPost({parent}) {
         }
 
         console.log(formData);
-        axios.post("/post/create", formData)
+        axios.post("/post/new", formData)
             .then(response => {
                 location.reload();
             })
