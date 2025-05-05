@@ -49,17 +49,17 @@ function NewPost({parent}) {
         <form className="
                 flex flex-col items-center justify-center
                 text-white
-                w-50 h-50
-                bg-green-800
+                w-100 h-100
+                bg-green-800 border-2 border-black
             "
-            onkeydown="if(event.keyCode === 13) ;"
         >
-            <input 
+            <textarea 
                 className="
                     text-black
+                    p-1
                     static
-                    h-5/7
-                    w-auto
+                    w-full
+                    h-full
                     bg-green-200
                 "
                 type="text" 

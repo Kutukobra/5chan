@@ -66,13 +66,15 @@ function Post({post_id, content, image, creator_id, created_at, parent_id}) {
             </div>
             <div className="relative h-full">
                 {image && <img src={image} className="float-left w-1/3 m-1"/>}
-                <p className="mx-2 text-black text-md">{content}</p>
+                <p className="mx-2 text-black text-md whitespace-pre-line">{content}</p>
             </div>
             <Popup trigger={
                 <button className="relative bg-green-300 m-1 p-1 border-black border-1 text-blue-900 hover:bg-green-200 hover:cursor-pointer">
                     Reply
                 </button>
-            }>
+            }
+                position="bottom left"
+            >
                     <NewPost 
                         parent={post_id}
                     />
