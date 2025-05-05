@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import NewPost from "./NewPost";
 import axios from "axios";
+import Timestamp from "react-timestamp";
 
 function PostGrid({posts}) {
 
@@ -26,7 +27,7 @@ function PostGrid({posts}) {
     )
 }
 
-function Post({post_id, content, image, creator_id, created_at, parent_id}) {
+function Post({post_id, content, image, creator_id, created_at}) {
     const [user, setUser] = useState({});
 
     const [replies, setReplies] = useState([]);
@@ -56,6 +57,11 @@ function Post({post_id, content, image, creator_id, created_at, parent_id}) {
             <div className="relative my-2">
                 <span className="text-blue-900">
                     {"Anonymous"}
+                    {
+                        <Timestamp relative date={created_at}
+                            className="text-gray-500 m-2"
+                        />
+                    }
                 {
                     creator_id == user?.id &&
                     <button className="absolute right-2 text-red-500">
