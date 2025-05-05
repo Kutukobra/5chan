@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 
-function NewPost() {
+function NewPost({parent}) {
+    console.log(parent);
     const [image, setImage] = useState(null);
     const [content, setContent] = useState("");
 
@@ -18,6 +19,13 @@ function NewPost() {
             formData.append(
                 "content",
                 content
+            )
+        }
+
+        if (parent != null) {
+            formData.append(
+                "parent_id",
+                parent
             )
         }
 
@@ -66,6 +74,7 @@ function NewPost() {
                 "
                 type="file" 
                 name="file"
+                accept="image/png, image/jpeg, image/jpg"
                 onChange={onFileChange}
             />
             <button onClick={handleSubmit}
