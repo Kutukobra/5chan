@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 function NewPost({parent}) {
     console.log(parent);
@@ -97,6 +99,7 @@ function NewPost({parent}) {
                 Post
             </button>
         </form>
+
     )
 }
 

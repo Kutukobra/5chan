@@ -50,7 +50,7 @@ function Post({post_id, content, image, creator_id, created_at}) {
         <section className="
                     relative
                     content-center
-                    w-full sm:w-2/3 h-full
+                    w-full sm:w-2/3 overflow-scroll
                     p-2 m-1 
                     bg-green-200 border-1 border-green-500
         ">
@@ -72,7 +72,7 @@ function Post({post_id, content, image, creator_id, created_at}) {
             </div>
             <div className="relative h-full">
                 {image && <img src={image} className="float-left w-1/3 m-1"/>}
-                <p className="mx-2 text-black text-md whitespace-pre-line overflow-hidden">{content}</p>
+                <p className="mx-2 text-black text-md whitespace-pre-line overflow-x-hidden overflow-y-scroll max-h-100">{content}</p>
                 {
                 replies.map((post) => {
                     if (!post || !post.id) return null;
