@@ -51,16 +51,17 @@ function Post({post_id, content, image, creator_id, created_at}) {
                     relative
                     content-center
                     w-full sm:w-2/3
-                    p-2 m-1 
+                    p-2 m-0.2 rounded-md
                     bg-green-200 border-1 border-green-500
         ">
             <div className="relative my-2">
-                <span className="text-blue-900">
+                <span className="text-blue-900 border-1 p-1 rounded-md">
                     {"Anonymous"}
                     {
                         <Timestamp relative date={created_at}
                             className="text-gray-500 m-2"
                         />
+                        
                     }
                 {
                     creator_id == user?.id &&
@@ -71,7 +72,7 @@ function Post({post_id, content, image, creator_id, created_at}) {
                 </span>
             </div>
             <div className="relative h-full p-1">
-                {image && <img src={image} className="float-left w-1/3 m-1"/>}
+                {image && <img src={image} className="float-left max-h-100 max-w-1/3 m-0.5 hover:max-h-full hover:max-w-full hover:w-1/2 hover:position-absolute"/>}
                 <p className="p-0 text-black text-md whitespace-pre-line overflow-x-hidden overflow-y-auto min-h-5 max-h-100">{content}</p>
                 {
                 replies.map((post) => {
@@ -90,11 +91,13 @@ function Post({post_id, content, image, creator_id, created_at}) {
                 })
             }
             </div>
-            <Popup trigger={
-                <button className="relative bg-green-300 m-1 p-1 border-black border-1 text-blue-900 hover:bg-green-400 hover:cursor-pointer">
-                    Reply
-                </button>
-            }
+            <Popup 
+                trigger= {
+                    <button className="relative bg-green-300 m-1 p-0.5 border-green-600 border-1 text-green-900 hover:bg-green-100 hover:cursor-pointer">
+                        Reply
+                    </button>
+                    
+                }
                 position="bottom left"
             >
                     <NewPost 

@@ -60,6 +60,7 @@ function NewPost({parent}) {
                 text-white
                 w-100 h-100
                 bg-green-800 border-2 border-black
+                rounded-xl
             "
         >
             <textarea 
