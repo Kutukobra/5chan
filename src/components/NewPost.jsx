@@ -19,14 +19,24 @@ function NewPost({parent}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const captchaValue = recaptcha.current.getValue()
+        const captchaValue = recaptcha.current.getValue();
         if (!captchaValue) {
             alert('Please verify the reCAPTCHA!')
             return;
         }
 
-        const res = await axios.post('/verify', { captchaValue })
-        const data = await res.json()
+        let data;
+        console.log(captchaValue);
+        try {
+            const res = await axios.post('/verify', { captchaValue });
+            data = res.data;
+        } catch (error) {
+            console.error(error);
+            alert("An error occurred during CAPTCHA verification.");
+            return;
+        }
+
+        console.log(data);
 
         if (!data.success) {
             alert("reCAPTCHA validation failed.");
@@ -72,7 +82,7 @@ function NewPost({parent}) {
 
     return (
         <form className="
-                flex flex-col items-center justify-center
+                flex flex-col items-center  ustify-center
                 text-white
                 w-100 h-100
                 bg-green-800 border-2 border-black
@@ -115,7 +125,7 @@ function NewPost({parent}) {
             >
                 Post
             </button>
-            <ReCAPTCHA ref={recaptcha} sitekey={"6LdZsC8rAAAAAGFuWgMaUWPt66ZaXnhAXTbo2hyZ"}/>
+            <ReCAPTCHA ref={recaptcha} sitekey="6LdZsC8rAAAAAGFuWgMaUWPt66ZaXnhAXTbo2hyZ"/>
         </form>
     )
 }
