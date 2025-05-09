@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+a {
+    color: blue;
+    text-decoration: underline;
+    padding: 1px;
+}

@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 import NewPost from "./NewPost";
 import axios from "axios";
 import Timestamp from "react-timestamp";
+import Autolink from "react-autolink-text2"
 
 function PostGrid({posts}) {
 
@@ -73,7 +74,11 @@ function Post({post_id, content, image, creator_id, created_at}) {
             </div>
             <div className="relative h-full p-1">
                 {image && <img src={image} className="float-left max-h-100 max-w-1/3 m-0.5 hover:max-h-full hover:max-w-full hover:w-1/2 hover:position-absolute"/>}
-                <p className="p-0 text-black text-md whitespace-pre-line overflow-x-hidden overflow-y-auto min-h-5 max-h-100">{content}</p>
+                <Autolink className="p-0 text-black text-md whitespace-pre-line overflow-x-hidden overflow-y-auto min-h-5 max-h-100"
+                    text={content}
+                    linkProps={{target: '_blank'}}
+                    
+                />
                 {
                 replies.map((post) => {
                     if (!post || !post.id) return null;
