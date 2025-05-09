@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 
@@ -8,6 +8,8 @@ function NewPost({parent}) {
     const [image, setImage] = useState(null);
     const [content, setContent] = useState("");
 
+    const recaptcha = useRef();
+
     const [loading, setLoading] = useState(false);
 
     const onFileChange = (event) => {
@@ -15,8 +17,28 @@ function NewPost({parent}) {
         setImage(event.target.files[0]);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const captchaValue = recaptcha.current.getValue()
+        if (!captchaValue) {
+            alert('Please verify the reCAPTCHA!')
+            return;
+        }
+
+        const res = await fetch('/verify', {
+            method: 'POST',
+            body: JSON.stringify({ captchaValue }),
+            headers: {
+                'content-type': 'application/json',
+            },
+        })
+        const data = await res.json()
+
+        if (!data.success) {
+            alert("reCAPTCHA validation failed.");
+            return;
+        }
+
         const formData = new FormData();
 
         setLoading(true);
@@ -99,8 +121,8 @@ function NewPost({parent}) {
             >
                 Post
             </button>
+            <ReCAPTCHA ref={recaptcha} sitekey={"6LdZsC8rAAAAAGFuWgMaUWPt66ZaXnhAXTbo2hyZ"}/>
         </form>
-
     )
 }
 
