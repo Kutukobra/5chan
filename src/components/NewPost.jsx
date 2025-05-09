@@ -25,13 +25,7 @@ function NewPost({parent}) {
             return;
         }
 
-        const res = await fetch('https://5chan-be.vercel.app/verify', {
-            method: 'POST',
-            body: JSON.stringify({ captchaValue }),
-            headers: {
-                'content-type': 'application/json',
-            },
-        })
+        const res = await axios.post('/verify', { captchaValue })
         const data = await res.json()
 
         if (!data.success) {
