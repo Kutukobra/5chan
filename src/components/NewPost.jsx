@@ -25,7 +25,7 @@ function NewPost({parent}) {
             return;
         }
 
-        const res = await fetch('/verify', {
+        const res = await fetch('https://5chan-be.vercel.app/verify', {
             method: 'POST',
             body: JSON.stringify({ captchaValue }),
             headers: {
